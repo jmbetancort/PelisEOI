@@ -1,103 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>PelisEOI</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
-    </head>
-    <body>
-        <nav>
-            <div class="wrapper">
-                <div class="logo"><img src="img/logo.png" title="Logo EOI" alt="Logo EOI"></div>
-                <div class="menu">
-                    <ul>
-                        <li>Categorías</li>
-                        <li>Mejor valoradas</li>
-                        <li>Populares ahora</li>
-                        <li>Próximamente</li>
-                    </ul>
-                </div>
-                <div class="search">
-                    <div class="iconsearch"><img src="img/Search_Icon.png"></div>
-                    <input type="search" class="inputsearch" placeholder="Encuentra tu película favorita"> 
-                </div>
+<html lang="en" ng-app="JMAPP">
+
+<head>
+    <link rel="icon" type="image/jpg" href="img/icon.jpg" />
+    <title>PelisEOI</title>
+    <meta charset="UTF-8">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+</head>
+
+<body ng-cloak>
+    <nav>
+        <div class="wrapper">
+            <div class="logo"><img src="img/logo.png" title="Logo EOI" alt="Logo EOI"></div>
+            <div class="menu">
+                <ul>
+                    <li>Categorías</li>
+                    <li>Mejor valoradas</li>
+                    <li>Populares ahora</li>
+                    <li>Próximamente</li>
+                </ul>
             </div>
-        </nav>
-        <section class="content">
-            <div class="wrapper">
-                <div class="aside">
-                    <div class="headeraside">
-                        <div class="iconfilter"><img src="img/filter_icon.png"></div>
-                        <div class="textheaderaside">
-                            <p>Filtrar</p>
-                            <p><span class"letterdelete">Borrar</span></p>
-                        </div>
-                    </div>
-                    <div class="containeraside">
-                        <div class="rowclasification">
-                            <p>Año</p>
-                            <span>1975-2015</span>
-                        </div>
-                        <img src="img/slider.jpg">
-                        <div class="rowclasification">
-                            <p>Valoración IMDB</p>
-                            <span>0-5</span>
-                        </div>
-                        <img src="img/slider.jpg">
-                        <div class="rowclasification">
-                            <p>Rotten Tomatoes - CS</p>
-                            <span>0-50</span>
-                        </div>
-                        <img src="img/slider.jpg">
-                        <div class="rowclasification">
-                            <p>Rotten Tomatoes - CS</p>
-                            <span>0-50</span>
-                        </div>
-                        <img src="img/slider.jpg">
-                        <div class="rowclasification">
-                            <p>Géneros</p>
-                        </div>
-                        <div class="buttons">
-                            <a href="#" class="btnselect">Acción</a>
-                            <a href="#" class="btnnoselect">Aventura</a>
-                            <a href="#" class="btnnoselect">Animación</a>
-                            <a href="#" class="btnnoselect">Comedia</a>
-                            <a href="#" class="btnnoselect">Crimen</a>
-                            <a href="#" class="btnnoselect">Documental</a>
-                            <a href="#" class="btnnoselect">Drama</a>
-                            <a href="#" class="btnnoselect">Familiar</a>
-                            <a href="#" class="btnnoselect">Fantasía</a>
-                            <a href="#" class="btnnoselect">Históricas</a>
-                            <a href="#" class="btnnoselect">Horror</a>
-                            <a href="#" class="btnnoselect">Música</a>
-                            <a href="#" class="btnnoselect">Misterio</a>
-                            <a href="#" class="btnnoselect">Romance</a>
-                            <a href="#" class="btnnoselect">Ficción</a>
-                            <a href="#" class="btnnoselect">TV Movies</a>
-                            <a href="#" class="btnnoselect">Thriller</a>
-                            <a href="#" class="btnnoselect">Guerra</a>
-                            <a href="#" class="btnnoselect">Western</a>
-                        </div>
+            <div class="search">
+                <div class="iconsearch"><img src="img/Search_Icon.png"></div>
+                <input type="search" class="inputsearch" placeholder="Encuentra tu película favorita">
+            </div>
+        </div>
+    </nav>
+    <section class="content">
+        <div class="wrapper">
+            <div class="aside">
+                <div class="headeraside">
+                    <div class="iconfilter"><img src="img/filter_icon.png"></div>
+                    <div class="textheaderaside">
+                        <p>Filtrar</p>
+                        <p><span class "letterdelete">Borrar</span></p>
                     </div>
                 </div>
-                <div class="subcontent">
-                    <div class="headersubcontent">
-                        <p><span class="nummovies">107,875</span> películas encontradas</p>
-                        <p>Ordenar v</p>
+                <div class="containeraside">
+                    <div class="rowclasification">
+                        <p>Año</p>
+                        <span>1975-2015</span>
                     </div>
-                    <div class="containermovie">
-                        <a href="#" class="item"><img src="img/cartel.jpg"></a>
-                        <a href="#" class="item"><img src="img/cartel.jpg"></a>
-                        <a href="#" class="item"><img src="img/cartel.jpg"></a>
-                        <a href="#" class="item"><img src="img/cartel.jpg"></a>
-                        <a href="#" class="item"><img src="img/cartel.jpg"></a>
-                        <a href="#" class="item"><img src="img/cartel.jpg"></a>
+                    <img src="img/slider.jpg">
+                    <div class="rowclasification">
+                        <p>Valoración IMDB</p>
+                        <span>0-5</span>
+                    </div>
+                    <img src="img/slider.jpg">
+                    <div class="rowclasification">
+                        <p>Rotten Tomatoes - CS</p>
+                        <span>0-50</span>
+                    </div>
+                    <img src="img/slider.jpg">
+                    <div class="rowclasification">
+                        <p>Rotten Tomatoes - CS</p>
+                        <span>0-50</span>
+                    </div>
+                    <img src="img/slider.jpg">
+                    <div class="rowclasification">
+                        <p>Géneros</p>
+                    </div>
+                    <div class="buttons">
+                        <a href="#" class="btnselect">Acción</a>
+                        <a href="#" class="btnnoselect">Aventura</a>
+                        <a href="#" class="btnnoselect">Animación</a>
+                        <a href="#" class="btnnoselect">Comedia</a>
+                        <a href="#" class="btnnoselect">Crimen</a>
+                        <a href="#" class="btnnoselect">Documental</a>
+                        <a href="#" class="btnnoselect">Drama</a>
+                        <a href="#" class="btnnoselect">Familiar</a>
+                        <a href="#" class="btnnoselect">Fantasía</a>
+                        <a href="#" class="btnnoselect">Históricas</a>
+                        <a href="#" class="btnnoselect">Horror</a>
+                        <a href="#" class="btnnoselect">Música</a>
+                        <a href="#" class="btnnoselect">Misterio</a>
+                        <a href="#" class="btnnoselect">Romance</a>
+                        <a href="#" class="btnnoselect">Ficción</a>
+                        <a href="#" class="btnnoselect">TV Movies</a>
+                        <a href="#" class="btnnoselect">Thriller</a>
+                        <a href="#" class="btnnoselect">Guerra</a>
+                        <a href="#" class="btnnoselect">Western</a>
                     </div>
                 </div>
             </div>
-        </section>
-        
-    </body>
+            <div ng-view class="subcontent"></div>
+        </div>
+    </section>
+    
+    <script src="./libs/angular/angular.min.js"></script>
+    <script src="./libs/angular/angular-route.min.js"></script>
+
+    <!-- App -->
+    <script src="./js/app.js"></script>
+    <!-- Services -->
+    <!-- Components -->
+    <!-- Controllers -->
+    <script src="./js/controllers/home.controller.js"></script>
+</body>
+
 </html>
