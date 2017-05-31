@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="JMAPP">
+<html lang="es" ng-app="JMAPP">
 
 <head>
     <link rel="icon" type="image/jpg" href="img/icon.jpg" />
@@ -10,19 +10,24 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese"
         rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 
-<body ng-cloak>
+<body ng-cloak ng-class="{modalOpen: oneFilm == true }">
     <nav>
         <div class="wrapper">
             <div class="logo"><img src="img/logo.png" title="Logo EOI" alt="Logo EOI"></div>
             <div class="menu">
                 <ul>
-                    <li>Categorías</li>
-                    <li>Mejor valoradas</li>
-                    <li>Populares ahora</li>
-                    <li>Próximamente</li>
+                    <li><a href="/">Descrubrir</a></li>
+                    <li><a href="/popularity.html">Más recientes</a></li>
+                    <li><a href="/recentsFilms.html">Próximos extrenos</a></li>
+                    <li><a href="#"><i class="fa fa-caret-square-o-down" aria-hidden="true"></i></a>
+                        <ul>
+                            <li><a href="#">Mis favoritos</a></li>
+                            <li><a href="#">Ver más tarde</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <div class="search">
@@ -38,7 +43,7 @@
                     <div class="iconfilter"><img src="img/filter_icon.png"></div>
                     <div class="textheaderaside">
                         <p>Filtrar</p>
-                        <p><span class "letterdelete">Borrar</span></p>
+                        <p><span class="letterdelete">Borrar</span></p>
                     </div>
                 </div>
                 <div class="containeraside">
@@ -47,24 +52,6 @@
                         <span>1975-2015</span>
                     </div>
                     <img src="img/slider.jpg">
-                    <div class="rowclasification">
-                        <p>Valoración IMDB</p>
-                        <span>0-5</span>
-                    </div>
-                    <img src="img/slider.jpg">
-                    <div class="rowclasification">
-                        <p>Rotten Tomatoes - CS</p>
-                        <span>0-50</span>
-                    </div>
-                    <img src="img/slider.jpg">
-                    <div class="rowclasification">
-                        <p>Rotten Tomatoes - CS</p>
-                        <span>0-50</span>
-                    </div>
-                    <img src="img/slider.jpg">
-                    <div class="rowclasification">
-                        <p>Géneros</p>
-                    </div>
                     <div class="buttons">
                         <a href="#" class="btnselect">Acción</a>
                         <a href="#" class="btnnoselect">Aventura</a>
@@ -92,15 +79,18 @@
         </div>
     </section>
     
-    <script src="./libs/angular/angular.min.js"></script>
-    <script src="./libs/angular/angular-route.min.js"></script>
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular/angular-route.min.js"></script>
 
     <!-- App -->
-    <script src="./js/app.js"></script>
+    <script src="js/app.js"></script>
     <!-- Services -->
+    <script src="js/factories/theMovieDB.factory.js"></script>
     <!-- Components -->
     <!-- Controllers -->
-    <script src="./js/controllers/home.controller.js"></script>
+    <script src="js/controllers/home.controller.js"></script>
+    <script src="js/controllers/recentsFilms.controller.js"></script>
+    <script src="js/controllers/popularity.controller.js"></script>
 </body>
 
 </html>
