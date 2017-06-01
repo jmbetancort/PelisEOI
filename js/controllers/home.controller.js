@@ -16,7 +16,7 @@
         ////////////////
 
         function activate() { 
-            MovieDBFactory.getDiscover("revenue.desc")
+            MovieDBFactory.getFilms('popular')
             .then(function (response) {
                         $scope.films = response;
                     });

@@ -3,17 +3,17 @@
 
     angular
         .module('JMAPP')
-        .controller('PopularityController', PopularityController);
+        .controller('UpcomingController', UpcomingController);
 
-    PopularityController.$inject = ['$scope','MovieDBFactory'];
-    function PopularityController($scope,MovieDBFactory) {
+    UpcomingController.$inject = ['$scope','MovieDBFactory'];
+    function UpcomingController($scope,MovieDBFactory) {
         $scope.films = [];
         activate();
 
         ////////////////
 
         function activate() { 
-            MovieDBFactory.getDiscover("popularity.desc")
+            MovieDBFactory.getFilms('upcoming')
             .then(function (response) {
                         $scope.films = response;
                     });

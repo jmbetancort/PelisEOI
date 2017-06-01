@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('JMAPP', ['ngRoute']).config(config);
+    angular.module('JMAPP', ['ngRoute' , 'rzModule']).config(config);
     config.$inject=['$routeProvider','$locationProvider'];
     function config($routeProvider, $locationProvider){
         $locationProvider.html5Mode(true);
@@ -14,13 +14,13 @@
                 controller: 'IndividualController',
                 templateUrl: 'views/individual.html'
             })
-            .when("/recentsFilms.html",{
-                controller: 'FilmsRecentController',
-                templateUrl: 'views/recentsFilms.html'
+            .when("/upcoming.html",{
+                controller: 'UpcomingController',
+                templateUrl: 'views/upcoming.html'
             })
-            .when("/popularity.html",{
-                controller: 'PopularityController',
-                templateUrl: 'views/popularity.html'
+            .when("/recents.html",{
+                controller: 'RecentController',
+                templateUrl: 'views/recents.html'
             })
             .otherwise( { redirectTo: "/"});
     }
