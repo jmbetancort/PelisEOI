@@ -30,6 +30,6 @@
                 controller: 'SeeLaterController',
                 templateUrl: 'views/seeLater.html'
             })
-            .otherwise( { redirectTo: "/"});
+            .otherwise( { redirectTo: "PelisEOI/"});
     }
 })();
