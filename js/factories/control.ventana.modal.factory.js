@@ -29,6 +29,7 @@
             var num = numero + 1;
             console.log(num);
             localStorage.setItem('controlModal', JSON.stringify(num));
+            return JSON.parse(localStorage.getItem('Controlmodal'));
         }
         ////////////////
         function reset(){
