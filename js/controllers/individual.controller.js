@@ -36,6 +36,10 @@
                             $scope.film.rottenTomatoes = response.rottenTomatoes;
                             $scope.film.metascore = response.metascore;
                         })
+                    OpenSubtitlesFactory.getSubtitles($scope.film.idIMDB)
+                        .then(function (response) {
+                            $scope.subtitles = response;
+                        })
                 });
             MovieDBFactory.getVideo($routeParams.id, 'es')
                 .then(function (response) {
@@ -64,10 +68,7 @@
                         $scope.existingSimilar = false;
                     }
                 })
-            OpenSubtitlesFactory.getSubtitles($scope.film.idIMDB)
-                .then(function (response) {
-                    $scope.subtitles = response;
-                })
+
 
         }
         /////////////////
