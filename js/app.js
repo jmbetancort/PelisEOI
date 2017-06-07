@@ -6,7 +6,7 @@
     function config($routeProvider, $locationProvider){
         $locationProvider.html5Mode(true);
         $routeProvider
-            .when("/",{
+            .when("PelisEOI/",{
                 controller: 'HomeController',
                 templateUrl: 'views/home.html'
             })
@@ -18,7 +18,7 @@
                 controller: 'UpcomingController',
                 templateUrl: 'views/upcoming.html'
             })
-            .when("/recents",{
+            .when("PelisEOI/recents",{
                 controller: 'RecentController',
                 templateUrl: 'views/recents.html'
             })
