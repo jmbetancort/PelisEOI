@@ -18,7 +18,7 @@
         ////////////////
         function get() { 
             if ('ControlModal' in localStorage){
-                return parseInt(localStorage.getItem('Controlmodal'));
+                return localStorage.getItem('Controlmodal');
             } else {
                 return 0;
             }
@@ -28,7 +28,7 @@
         function modify(numero){
             var num = numero + 1;
             localStorage.setItem('ControlModal', num);
-            console.log(parseInt(localStorage.getItem('Controlmodal')))
+            console.log(localStorage.getItem('Controlmodal'))
             return parseInt(localStorage.getItem('Controlmodal'));
         }
         ////////////////
