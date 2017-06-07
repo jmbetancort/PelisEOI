@@ -5,23 +5,29 @@
         .module('JMAPP')
         .controller('IndividualController', IndividualController);
 
-    IndividualController.$inject = ['$scope', '$routeParams', 'MovieDBFactory', 'omdbFactory', '$sce', 'OpenSubtitlesFactory'];
+    IndividualController.$inject = ['$scope', '$routeParams', 'MovieDBFactory', 'omdbFactory', '$sce', 'OpenSubtitlesFactory','ControlModalFactory'];
 
-    function IndividualController($scope, $routeParams, MovieDBFactory, omdbFactory, $sce, OpenSubtitlesFactory) {
+    function IndividualController($scope, $routeParams, MovieDBFactory, omdbFactory, $sce, OpenSubtitlesFactory, ControlModalFactory) {
         $scope.close = close;
         $scope.MovieDBFactory = MovieDBFactory;
         $scope.omdbFactory = omdbFactory;
         $scope.OpenSubtitlesFactory = OpenSubtitlesFactory;
+        $scope.ControlModalFactory = ControlModalFactory;
         $scope.film = {};
         $scope.video = false;
         $scope.existingSimilar = false;
         $scope.limitCharacters = limitCharacters;
         $scope.subtitles = {};
+        $scope.modal = 0;
         activate();
 
         ////////////////
 
         function activate() {
+            $scope.modal = ControlModalFactory.get();
+            console.log($scope.modal);
+            ControlModalFactory.modify($scope.modal);
+            console.log($scope.modal);
             document.querySelector('body').style.overflow = "hidden";
             $scope.video = false;
             MovieDBFactory.getOneFilm($routeParams.id)
@@ -88,8 +94,9 @@
         }
         ////////////////
         function close() {
-            window.history.back();
+            window.history.go(-($scope.modal));
             document.querySelector('body').style.overflow = "visible";
+            ControlModalFactory.reset();
         }
     }
 })();
