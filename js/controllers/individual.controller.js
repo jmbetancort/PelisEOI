@@ -64,7 +64,7 @@
                         $scope.existingSimilar = false;
                     }
                 })
-            OpenSubtitlesFactory.getSubtitles()
+            OpenSubtitlesFactory.getSubtitles($scope.film.idIMDB)
                 .then(function (response) {
                     $scope.subtitles = response;
                 })

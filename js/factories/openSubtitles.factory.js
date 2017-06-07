@@ -15,7 +15,7 @@
         return service;
 
         ////////////////
-        function getSubtitles() {
+        function getSubtitles(id) {
             var subtitles = {};
             const OS = require('opensubtitles-api');
             const OpenSubtitles = new OS({
@@ -30,7 +30,7 @@
                 .catch(err => {
                     alert("Error al conectar con Opensubtitles!")
                 });
-            return OpenSubtitles.search({'imdbid' : '1129442','limit' : 'best', 'sublanguageid': 'en,es'})
+            return OpenSubtitles.search({'imdbid' : id,'limit' : 'best', 'sublanguageid': 'en,es'})
                 .then(res => {
                     subtitles = {
                         es: res.es,
