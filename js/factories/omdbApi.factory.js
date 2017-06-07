@@ -16,7 +16,7 @@
 
         ////////////////
         function getMovieData(idIMDB) {
-            return $http.get('http://www.omdbapi.com/?apikey=3370463f&i=' + idIMDB)
+            return $http.get('https://www.omdbapi.com/?apikey=3370463f&i=' + idIMDB)
                 .then(function (response) {
                     var data = {};
                     if (response.data.Runtime == 'N/A' || response.data.Runtime == 0) {
