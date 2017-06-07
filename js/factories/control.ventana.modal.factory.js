@@ -30,13 +30,13 @@
             var num = numero + 1;
             console.log(num);
             localStorage.setItem('controlModal', num);
-            return parse(localStorage.getItem('Controlmodal'));
+            return parseInt(localStorage.getItem('Controlmodal'));
         }
         ////////////////
         function reset(){
             var num = 0;
             localStorage.setItem('controlModal', JSON.stringify(num));
-            console.log( parse(localStorage.getItem('Controlmodal')));
+            console.log( parseInt(localStorage.getItem('Controlmodal')));
         }
     }
 })();
