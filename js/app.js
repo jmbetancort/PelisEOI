@@ -6,30 +6,30 @@
     function config($routeProvider, $locationProvider){
         $locationProvider.html5Mode(true);
         $routeProvider
-            .when("",{
+            .when("PelisEOI/",{
                 controller: 'HomeController',
                 templateUrl: 'views/home.html'
             })
-            .when("individual/:id",{
+            .when("PelisEOI/individual/:id",{
                 controller: 'IndividualController',
                 templateUrl: 'views/individual.html'
             })
-            .when("upcoming",{
+            .when("PelisEOI/upcoming",{
                 controller: 'UpcomingController',
                 templateUrl: 'views/upcoming.html'
             })
-            .when("recents",{
+            .when("PelisEOI/recents",{
                 controller: 'RecentController',
                 templateUrl: 'views/recents.html'
             })
-            .when("favourites",{
+            .when("PelisEOI/favourites",{
                 controller: 'FavouritesController',
                 templateUrl: 'views/favourites.html'
             })
-            .when("seeLater",{
+            .when("PelisEOI/seeLater",{
                 controller: 'SeeLaterController',
                 templateUrl: 'views/seeLater.html'
             })
-            .otherwise( { redirectTo: ""});
+            .otherwise( { redirectTo: "PelisEOI/"});
     }
 })();
