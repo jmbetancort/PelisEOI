@@ -4,7 +4,7 @@
 </div>
 <div class="containermovie">
     <div ng-model="oneFilm" class="item" ng-repeat="film in films track by film.id">
-        <a href="/individual/{{film.id}}"><img ng-src="{{film.poster}}" title="{{film.name}}"></a>
+        <a href="{{site.base-url}}/individual/{{film.id}}"><img ng-src="{{film.poster}}" title="{{film.name}}"></a>
         <div class="icons-rt">
             <div class="val" id="star"><i class="fa fa-star-o fa-lg" aria-hidden="true"></i><span>{{film.vote}}</span></div>
             <div class="val"><i ng-click="addFavourite(film)" class="fa fa-heart fa-lg" aria-hidden="true"></i></div>
