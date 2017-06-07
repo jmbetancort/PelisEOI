@@ -19,7 +19,7 @@
         function get() { 
             if ('controlModal' in localStorage){
                 console.log(localStorage.getItem('Controlmodal'))
-                return localStorage.getItem('Controlmodal');
+                return parseInt(localStorage.getItem('Controlmodal'));
             } else {
                 return 0;
             }
@@ -30,13 +30,13 @@
             var num = numero + 1;
             console.log(num);
             localStorage.setItem('controlModal', num);
-            return localStorage.getItem('Controlmodal');
+            return parseInt(localStorage.getItem('Controlmodal'));
         }
         ////////////////
         function reset(){
             var num = 0;
             localStorage.setItem('controlModal', num);
-            console.log( localStorage.getItem('Controlmodal'));
+            console.log( parseInt(localStorage.getItem('Controlmodal')));
         }
     }
 })();
