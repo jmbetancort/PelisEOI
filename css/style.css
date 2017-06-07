@@ -561,7 +561,7 @@ section {
     text-align: center;
 }
 
-.similiarmovies div>a img {
+.similiarmovies div>a .imgSimilar {
     height: 241px;
     width: 270px;
 }

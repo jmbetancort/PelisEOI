@@ -77,9 +77,11 @@
                 var array = text.split("");
                 if (array.length > 500) {
                     array.splice(450, array.length);
+                    array = array.join("") + "...";
+                    return array;
+                } else { 
+                    return text
                 }
-                array = array.join("") + "...";
-                return array;
             } else {
                 return ""
             }
