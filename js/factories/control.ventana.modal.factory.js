@@ -28,7 +28,6 @@
         function modify(numero){
             var num = numero + 1;
             localStorage.setItem('ControlModal', num);
-            console.log(parseInt(localStorage.getItem('ControlModal')))
             return parseInt(localStorage.getItem('ControlModal'));
         }
         ////////////////

@@ -26,7 +26,6 @@
         function activate() {
             $scope.modal = parseInt(ControlModalFactory.get());
             $scope.modal = ControlModalFactory.modify($scope.modal);
-            console.log($scope.modal);
             document.querySelector('body').style.overflow = "hidden";
             $scope.video = false;
             MovieDBFactory.getOneFilm($routeParams.id)
@@ -94,8 +93,8 @@
         ////////////////
         function close() {
             window.history.go(-($scope.modal));
-            document.querySelector('body').style.overflow = "visible";
             ControlModalFactory.reset();
+            document.querySelector('body').style.overflow = "visible";
         }
     }
 })();
