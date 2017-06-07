@@ -10,23 +10,23 @@
                 controller: 'HomeController',
                 templateUrl: 'views/home.html'
             })
-            .when("/individual/:id",{
+            .when("individual/:id",{
                 controller: 'IndividualController',
                 templateUrl: 'views/individual.html'
             })
-            .when("/upcoming",{
+            .when("upcoming",{
                 controller: 'UpcomingController',
                 templateUrl: 'views/upcoming.html'
             })
-            .when("/recents",{
+            .when("recents",{
                 controller: 'RecentController',
                 templateUrl: 'views/recents.html'
             })
-            .when("/favourites",{
+            .when("favourites",{
                 controller: 'FavouritesController',
                 templateUrl: 'views/favourites.html'
             })
-            .when("/seeLater",{
+            .when("seeLater",{
                 controller: 'SeeLaterController',
                 templateUrl: 'views/seeLater.html'
             })
