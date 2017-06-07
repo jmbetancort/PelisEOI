@@ -41,7 +41,7 @@
         <p ng-if="existingSimilar">Películas similares</p>
         <div ng-if="existingSimilar" class="similiarmovies">
             <div ng-repeat="filmsimilar in similares">
-                <a href="individual/{{filmsimilar.id}}"><div class="imgSimilar" style="background-image: 'url({{filmsimilar.poster}})'"></div></a>
+                <a href="individual/{{filmsimilar.id}}"><div class="imgSimilar" style="background-image: url('{{filmsimilar.poster}}')"></div></a>
                 <p>{{filmsimilar.title}}</p>
             </div>
         </div>
