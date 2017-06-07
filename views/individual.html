@@ -2,64 +2,47 @@
     <div class="film">
         <div class="titlefilm">
             <div>
-                <span>Título</span>
-                <span>Año</span>
+                <span>{{film.title}}</span>
+                <span>{{film.year}}</span>
             </div>
-            <a href="/"><img src="img/cross.png"></a>
+            <a href="#"><img src="img/cross.png" ng-click="close()"></a>
         </div>
         <div class="contentfilm">
-            <img src="img/Cartel.jpg">
+            <img ng-src="{{film.poster}}">
             <div class="sipnosis">
                 <div class="headersipnosis">
                     <span>Sipnosis</span>
-                    <span>2h22m</span>
+                    <span>{{film.runtime}}</span>
                 </div>
                 <div class="caractsfilm">
                     <div class="categoriasfilm">
-                        <span>Accion</span>
-                        <span>Comedia</span>
+                        <span ng-repeat="genre in film.genres">{{genre.name}}</span>
                     </div>
                     <div class="valorationfilm">
-                        <div><img src="img/star-color.png"><span>8</span></div>
-                        <div><img src="img/icon-tomattoes.png"><span>77%</span></div>
-                        <div><img src="img/icon-popcorn.png"><span>77%</span></div>
+                        <div><img src="img/star-color.png"><span>{{film.imdbRating}}</span></div>
+                        <div><img src="img/icon-tomattoes.png"><span>{{film.rottenTomatoes}}</span></div>
+                        <div><img src="img/icon-popcorn.png"><span>{{film.metascore}}%</span></div>
                     </div>
                 </div>
                 <div class="abstractfilm">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, quas saepe labore qui eos, nulla consequatur facere harum blanditiis
-                        temporibus omnis impedit vitae doloribus quo voluptates, sed, inventore dolor. Eligendi.
-                    </p>
+                    <p>{{film.descrip}} <span ng-repeat="company in film.company">(C) {{company.name}} </span></p>
                 </div>
                 <div class="trailer">
                     <p>Trailer</p>
-                    <iframe src="https://www.youtube.com/embed/cpkN0JdXRpM"></iframe>
+                    <iframe ng-if="video" ng-src="{{film.video}}" allowfullscreen></iframe>
+                    <img ng-if="!video" src="img/not_found_video.png">
                 </div>
             </div>
         </div>
         <div class="subtitles">
             <span>Subs:</span>
-            <span><a href="#">en</a></span>
-            <span><a href="#">de</a></span>
-            <span><a href="#">es</a></span>
+            <span ng-repeat="subtitle in subtitles"><a href="{{subtitle.url}}">{{subtitle.langcode}}</a></span>
         </div>
-        <p>Películas similares</p>
-        <div class="similiarmovies">
-            <div>
-                <img src="img/relations.jpg">
-                <p>Inception</p>
-            </div>
-            <div>
-                <img src="img/relations.jpg">
-                <p>Inception</p>
-            </div>
-            <div>
-                <img src="img/relations.jpg">
-                <p>Inception</p>
-            </div>
-            <div>
-                <img src="img/relations.jpg">
-                <p>Inception</p>
+        <p ng-if="existingSimilar">Películas similares</p>
+        <div ng-if="existingSimilar" class="similiarmovies">
+            <div ng-repeat="filmsimilar in similares">
+                <a href="/individual/{{filmsimilar.id}}"><img ng-src="{{filmsimilar.poster}}"></a>
+                <p>{{filmsimilar.title}}</p>
             </div>
         </div>
     </div>

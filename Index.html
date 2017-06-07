@@ -12,28 +12,29 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/rzslider.css"/>
+    <script src='http://code.jquery.com/jquery-latest.js'></script>
 </head>
 
-<body ng-cloak ng-class="{modalOpen: oneFilm == true }" ng-controller="MainController as Main">
+<body ng-cloak ng-controller="MainController as Main">
     <nav>
         <div class="wrapper">
             <div class="logo"><img src="img/logo.png" title="Logo EOI" alt="Logo EOI"></div>
             <div class="menu">
                 <ul>
-                    <li><a href="/">Descrubrir</a></li>
-                    <li><a href="/recents.html">Más recientes</a></li>
-                    <li><a href="/upcoming.html">Próximos extrenos</a></li>
+                    <li><a href="/" ng-click="Main.visibleAside()">Descrubrir</a></li>
+                    <li><a href="/recents">Más recientes</a></li>
+                    <li><a href="/upcoming">Próximos extrenos</a></li>
                     <li><a href="#"><i class="fa fa-caret-square-o-down" aria-hidden="true"></i></a>
                         <ul>
-                            <li><a href="#">Mis favoritos</a></li>
-                            <li><a href="#">Ver más tarde</a></li>
+                            <li><a href="/favourites">Mis favoritos</a></li>
+                            <li><a href="/seeLater">Ver más tarde</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
             <div class="search">
                 <div class="iconsearch"><img src="img/Search_Icon.png"></div>
-                <input type="search" ng-model="nameFilm" name="search" class="inputsearch" placeholder="Encuentra tu película favorita">
+                <input type="search" ng-model="Main.nameFilm" ng-model-options="{updateOn: 'blur'}" name="search" class="inputsearch" placeholder="Encuentra tu película favorita">
             </div>
         </div>
     </nav>
@@ -53,16 +54,26 @@
                         <span>{{Main.slider.minValue}}-{{Main.slider.maxValue}}</span>
                     </div>
                     <rzslider rz-slider-model="Main.slider.minValue" rz-slider-high="Main.slider.maxValue" rz-slider-options="Main.slider.options"></rzslider>
+                    <div class="rowclasification">
+                        <p>Valoración</p>
+                        <span>{{Main.slider1.minValue}}-{{Main.slider1.maxValue}}</span>
+                    </div>
+                    <rzslider id="valorationSlider" rz-slider-model="Main.slider1.minValue" rz-slider-high="Main.slider1.maxValue" rz-slider-options="Main.slider1.options"></rzslider>
+                    <div class="rowclasification">
+                        <p>Géneros</p>
+                    </div>
                     <div class="buttons">
                         <a href="#" ng-class="{btnSelect: genre.option == genre.name, btnNoSelect: genre.option != genre.name}" ng-repeat="genre in Main.genres track by genre.id" ng-click="Main.optionSelect(genre)">{{genre.name}}</a>
                     </div>
                 </div>
+                <div class="ocultAside"></div>
             </div>
             <div ng-view class="subcontent"></div>
         </div>
     </section>
+    <span class="ir-arriba"><i class="fa fa-arrow-circle-up fa-2x" aria-hidden="true"></i></span>
 
-    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular/angular.js"></script>
     <script src="libs/angular/angular-route.min.js"></script>
     <script src="libs/angular/rzslider.min.js"></script>
     <!-- App -->
@@ -70,12 +81,20 @@
     <!-- Services -->
     <script src="js/factories/theMovieDB.factory.js"></script>
     <script src="js/factories/genres.factory.js"></script>
+    <script src="js/factories/omdbApi.factory.js"></script>
+    <script src="js/factories/openSubtitles.factory.js"></script>
+    <script src="js/factories/local.storage.factory.js"></script>
     <!-- Components -->
     <!-- Controllers -->
     <script src="js/controllers/main.controller.js"></script>
     <script src="js/controllers/home.controller.js"></script>
     <script src="js/controllers/upcoming.controller.js"></script>
     <script src="js/controllers/recents.controller.js"></script>
+    <script src="js/controllers/individual.controller.js"></script>
+    <script src="js/controllers/favourites.controller.js"></script>
+    <script src="js/controllers/see.later.controller.js"></script>
+    <script src="js/open.subtitles.js"></script>
+    <script src="js/btn.goUp.js"></script>
 </body>
 
 </html>

@@ -1,14 +1,14 @@
 <div class="headersubcontent">
-    <p><span class="nummovies">107,875</span> películas encontradas</p>
+    <p><span class="nummovies">{{totalPelis}}</span> películas encontradas</p>
     <p>Ordenar <a href="#"><i class="fa fa-angle-down" aria-hidden="true"></a></i></p>
 </div>
 <div class="containermovie">
-    <a ng-model="oneFilm" href="/individual.html" class="item" ng-repeat="film in films track by film.id">
-        <img ng-src="{{film.poster}}" title="{{film.name}}">
+    <div ng-model="oneFilm" class="item" ng-repeat="film in films track by film.id">
+        <a href="/individual/{{film.id}}"><img ng-src="{{film.poster}}" title="{{film.name}}"></a>
         <div class="icons-rt">
-            <div class="val" id="star"><i class="fa fa-star-o fa-lg" aria-hidden="true"></i> <span>8</span></div>
-            <div class="val"><i class="fa fa-heart fa-lg" aria-hidden="true"></i> <span>77%</span></div>
-            <div class="val"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i> <span>77%</span></div>
+            <div class="val" id="star"><i class="fa fa-star-o fa-lg" aria-hidden="true"></i><span>{{film.vote}}</span></div>
+            <div class="val"><i ng-click="addFavourite(film)" class="fa fa-heart fa-lg" aria-hidden="true"></i></div>
+            <div class="val"><i ng-click="addSeeLater(film)" class="fa fa-clock-o fa-lg" aria-hidden="true"></i></div>
         </div>
-    </a>
+    </div>
 </div>
