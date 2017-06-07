@@ -26,7 +26,7 @@
         function activate() {
             $scope.modal = parseInt(ControlModalFactory.get());
             console.log($scope.modal);
-            $scope.modal = parseInt(ControlModalFactory.modify($scope.modal));
+            $scope.modal = ControlModalFactory.modify($scope.modal);
             console.log($scope.modal);
             document.querySelector('body').style.overflow = "hidden";
             $scope.video = false;
