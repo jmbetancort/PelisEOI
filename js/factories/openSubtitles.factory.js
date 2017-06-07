@@ -37,7 +37,6 @@
                         en: res.en,
                         de: res.de
                     }
-                    console.log(res);
                     return subtitles;
                 })
         }
