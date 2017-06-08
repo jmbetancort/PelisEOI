@@ -213,10 +213,12 @@
             MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
                 .then(function (response) {
                     if (response.films != []) {
+                        var films = Main.films;
                         var array = response.films;
                         array.forEach(function (element, position) {
-                            Main.films.push(element);
+                            films.push(element);
                         })
+                        Main.films = films;
                         console.log(Main.films);
                         var dif = Main.films.length - Main.filmsMostrar.length;
                         if (dif <= 18) {
