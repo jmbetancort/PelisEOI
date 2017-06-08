@@ -75,34 +75,32 @@
         //////////////////////////
         $(window).scroll(function () {
             if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-                cargarPelis();
+                if ($scope.page < $scope.totalpages) {
+                    cargarPelis();
+                }
             }
         });
         ///////////////////////////
         function cargarPelis() {
-            if ($scope.page < $scope.totalpages) {
-                $scope.page = $scope.page + 1;
-                console.log($scope.page);
-                MovieDBFactory.getFilms('upcoming', $scope.page)
-                    .then(function (response) {
-                        console.log(response);
-                        if (response.films != []) {
-                            console.log($scope.films);
-                            $scope.films.push(response.films);
-                            var dif = $scope.films.length - $scope.filmsMostrar.length;
-                            if (dif <= 18) {
-                                $scope.filmsMostrar = $scope.films;
-                            } else {
-                                for (var i = $scope.incremento + 1; i < $scope.incremento + 18; i++) {
-                                    $scope.filmsMostrar.push($scope.films[i]);
-                                }
-                                $scope.incremento = $scope.incremento + 18;
+            $scope.page = $scope.page + 1;
+            console.log($scope.page);
+            MovieDBFactory.getFilms('upcoming', $scope.page)
+                .then(function (response) {
+                    console.log(response);
+                    if (response.films != []) {
+                        console.log($scope.films);
+                        $scope.films.push(response.films);
+                        var dif = $scope.films.length - $scope.filmsMostrar.length;
+                        if (dif <= 18) {
+                            $scope.filmsMostrar = $scope.films;
+                        } else {
+                            for (var i = $scope.incremento + 1; i < $scope.incremento + 18; i++) {
+                                $scope.filmsMostrar.push($scope.films[i]);
                             }
+                            $scope.incremento = $scope.incremento + 18;
                         }
-                    });
-            } else {
-                $scope.filmsMostrar = $scope.films;
-            }
+                    }
+                });
         }
     }
 })();
