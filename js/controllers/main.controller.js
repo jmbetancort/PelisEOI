@@ -196,16 +196,16 @@
                     if (response.films != []) {
                         var array = response.films;
                         array.forEach(function (element, position) {
-                            $scope.films.push(element);
+                            Main.films.push(element);
                         })
-                        var dif = $scope.films.length - $scope.filmsMostrar.length;
+                        var dif = Main.films.length - Main.filmsMostrar.length;
                         if (dif <= 18) {
-                            $scope.filmsMostrar = $scope.films;
+                            Main.filmsMostrar = Main.films;
                         } else {
-                            for (var i = $scope.incremento; i < $scope.incremento + 18; i++) {
-                                $scope.filmsMostrar.push($scope.films[i]);
+                            for (var i = Main.incremento; i < Main.incremento + 18; i++) {
+                                Main.filmsMostrar.push(Main.films[i]);
                             }
-                            $scope.incremento = $scope.incremento + 18;
+                            Main.incremento = Main.incremento + 18;
                         }
                     }
                 });
