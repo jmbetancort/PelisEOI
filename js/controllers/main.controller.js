@@ -65,6 +65,7 @@
                     }
                     Main.totalPelis = response.totalPelis;
                     Main.totalpages = response.totalpages;
+                    console.log(Main.filmsMostrar);
                 })
         }
         ///////////////////////////////////////////////////////////////////////
@@ -169,6 +170,9 @@
                 element.option = "";
             })
             Main.btnSelects = [];
+            Main.page = 1;
+            Main.incremento = 18;
+            filter();
         }
         /////////////////////////////////////////////////////////////////
         function filter() {
