@@ -43,6 +43,7 @@
         Main.totalPelis = 0;
         Main.page = 0;
         Main.incremento = 0;
+        Main.cargarPelis = cargarPelis;
         activate();
 
         ////////////////
@@ -173,6 +174,8 @@
             Main.btnSelects = [];
             Main.page = 1;
             Main.incremento = 18;
+            Main.films = [];
+            Main.filmsMostrar = [];
             filter();
         }
         /////////////////////////////////////////////////////////////////
@@ -195,6 +198,36 @@
         //////////////////////////////////////////////////////////////////
         function visibleAside() {
             document.querySelector('.ocultAside').style.visibility = "hidden";
+        }
+        //////////////////////////
+        $(window).scroll(function () {
+            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                if (Main.page < Main.totalpages) {
+                    cargarPelis();
+                }
+            }
+        });
+        ///////////////////////////
+        function cargarPelis() {
+            Main.page = Main.page + 1;
+            MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
+                .then(function (response) {
+                    if (response.films != []) {
+                        var array = response.films;
+                        array.forEach(function (element, position) {
+                            Main.films.push(element);
+                        })
+                        var dif = Main.films.length - Main.filmsMostrar.length;
+                        if (dif <= 18) {
+                            Main.filmsMostrar = Main.films;
+                        } else {
+                            for (var i = Main.incremento; i < Main.incremento + 18; i++) {
+                                Main.filmsMostrar.push(Main.films[i]);
+                            }
+                            Main.incremento = Main.incremento + 18;
+                        }
+                    }
+                });
         }
     }
 })();
