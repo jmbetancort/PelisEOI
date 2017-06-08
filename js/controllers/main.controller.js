@@ -205,39 +205,5 @@
         function visibleAside() {
             document.querySelector('.ocultAside').style.visibility = "hidden";
         }
-        //////////////////////////
-        $(window).scroll(function () {
-            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-                if (Main.page < Main.totalpages) {
-                    cargarPelis();
-                }
-            }
-        });
-        ///////////////////////////
-        function cargarPelis() {
-            $scope.films = Main.films;
-            $scope.filmsMostrar = Main.filmsMostrar;
-            Main.page = Main.page + 1;
-            MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
-                .then(function (response) {
-                    if (response.films != []) {
-                        var array = response.films;
-                        array.forEach(function (element, position) {
-                            $scope.films.push(element);
-                        })
-                        var dif = $scope.films.length - $scope.filmsMostrar.length;
-                        if (dif <= 18) {
-                            $scope.filmsMostrar = $scope.films;
-                        } else {
-                            for (var i = Main.incremento; i < Main.incremento + 18; i++) {
-                                $scope.filmsMostrar.push($scope.films[i]);
-                            }
-                            Main.filmsMostrar = $scope.filmsMostrar;
-                            Main.films = $scope.films;
-                            Main.incremento = Main.incremento + 18;
-                        }
-                    }
-                });
-        }
     }
 })();
