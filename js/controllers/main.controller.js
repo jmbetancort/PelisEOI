@@ -59,7 +59,6 @@
                     Main.films = response.films;
                     Main.totalPelis = response.totalPelis;
                 })
-                console.log(Main.filmsMostrar);
 
         }
         ///////////////////////////////////////////////////////////////////////
