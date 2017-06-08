@@ -77,6 +77,7 @@
                 max = Main.slider.maxValue - 1900;
             }
             document.querySelector('.rz-pointer-max').innerHTML = max;
+            Main.incremento = 18;
             Main.page = 1;
             filter();
         })
@@ -91,6 +92,7 @@
                 min = Main.slider.minValue - 1900;
             }
             document.querySelector('.rz-pointer-min').innerHTML = min;
+            Main.incremento = 18;
             Main.page = 1;
             filter();
         })
@@ -98,12 +100,14 @@
         $scope.$watch("Main.slider1.maxValue", function (value) {
             var max = Main.slider1.maxValue;
             document.querySelector('#valorationSlider > .rz-pointer-max').innerHTML = max;
+            Main.incremento = 18;
             Main.page = 1;
             filter();
         })
         $scope.$watch("Main.slider1.minValue", function (value) {
             var min = Main.slider1.minValue;
             document.querySelector('#valorationSlider  span.rz-pointer.rz-pointer-min').innerHTML = min;
+            Main.incremento = 18;
             Main.page = 1;
             filter();
         })
@@ -129,6 +133,8 @@
                         Main.totalPelis = response.totalPelis;
                     })
             } else if (nameFilm == "") {
+                Main.incremento = 18;
+                Main.page = 1;
                 filter();
             }
         }
@@ -145,6 +151,8 @@
                     }
                 })
             }
+            Main.page = 1;
+            Main.incremento = 18;
             filter();
         }
         ///////////////////////////////////////////////////////////////
@@ -154,6 +162,7 @@
             Main.slider1.minValue = 0;
             Main.slider1.maxValue = 10;
             Main.page = 1;
+            Main.incremento = 18;
             Main.genres.forEach(function (element, position) {
                 element.option = "";
             })
@@ -161,10 +170,15 @@
         }
         /////////////////////////////////////////////////////////////////
         function filter() {
+            Main.filmsMostrar = [];
             MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
                 .then(function (response) {
                     Main.films = response.films;
+                    for (var i = 0; i < 18; i++) {
+                        Main.filmsMostrar.push(Main.films[i]);
+                    }
                     Main.totalPelis = response.totalPelis;
+                    Main.totalpages = response.totalpages;
                 })
         }
         //////////////////////////////////////////////////////////////////
