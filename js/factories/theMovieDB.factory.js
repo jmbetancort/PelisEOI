@@ -24,7 +24,7 @@
             return $http.get('https://api.themoviedb.org/3/movie/' + mode + '?api_key=daf9a865f58518b9a01a5ebc5ba0b252&language=es&page='+page+'&region=ES')
                 .then(function (response) {
                     var totalpelis = response.data.total_results;
-                    var totalpages = response.data.total_pages
+                    var totalpages = response.data.total_pages;
                     var array = response.data.results;
                     var baseURL = 'https://image.tmdb.org/t/p/w500';
                     var films = [];
@@ -47,13 +47,15 @@
                     })
                     return {
                         films: films,
-                        totalPelis: totalpelis
+                        totalPelis: totalpelis,
+                        totalpages: totalpages
                     }
                 }, function (error) {
                     alert("Fallo en la búsqueda");
                     return {
                         films: [],
-                        totalPelis: 0
+                        totalPelis: 0,
+                        totalpages: 0
                     }
                 });
         }

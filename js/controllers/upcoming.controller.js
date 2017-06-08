@@ -27,12 +27,10 @@
             document.querySelector('.ocultAside').style.visibility = "visible";
             MovieDBFactory.getFilms('upcoming',$scope.page)
                 .then(function (response) {
-                    console.log(response);
                     $scope.films = response.films;
                     for(var i=0;i<18;i++){
                         $scope.filmsMostrar.push($scope.films[i]);
                     }
-                    console.log($scope.filmsMostrar);
                     $scope.totalPelis = response.totalPelis;
                     $scope.totalpages = response.totalpages;
                 });
@@ -77,6 +75,7 @@
         //////////////////////////
         $(window).scroll(function () {
             if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                alert("Hola");
                 cargarPelis();
             }
         });
