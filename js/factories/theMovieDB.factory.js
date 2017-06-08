@@ -60,10 +60,11 @@
                 });
         }
         //////////////////////////////////////////////////////////
-        function filterFilms(minDate, maxDate, minVote, maxVote, genres) {
-            return $http.get('https://api.themoviedb.org/3/discover/movie?api_key=daf9a865f58518b9a01a5ebc5ba0b252&language=es&region=ES&sort_by=primary_release_date.desc&include_adult=false&include_video=false&primary_release_date.gte=' + minDate + '&primary_release_date.lte=' + maxDate + '&vote_average.gte=' + minVote + '&vote_average.lte=' + maxVote + '&with_genres=' + genres)
+        function filterFilms(minDate, maxDate, minVote, maxVote, genres, page) {
+            return $http.get('https://api.themoviedb.org/3/discover/movie?api_key=daf9a865f58518b9a01a5ebc5ba0b252&language=es&region=ES&sort_by=primary_release_date.desc&include_adult=false&include_video=false&primary_release_date.gte=' + minDate + '&primary_release_date.lte=' + maxDate + '&vote_average.gte=' + minVote + '&vote_average.lte=' + maxVote + '&with_genres=' + genres+'&page='+ page)
                 .then(function (response) {
                     var totalpelis = response.data.total_results;
+                    var totalpages = response.data.total_pages;
                     var array = response.data.results;
                     var baseURL = 'https://image.tmdb.org/t/p/w500';
                     var films = [];
@@ -88,13 +89,15 @@
                     })
                     return {
                         films: films,
-                        totalPelis: totalpelis
+                        totalPelis: totalpelis,
+                        totalpages: totalpages
                     }
                 }, function (error) {
                     alert("Fallo en la búsqueda");
                     return {
                         films: [],
-                        totalPelis: 0
+                        totalPelis: 0,
+                        totalpages: 0
                     }
                 });
         }

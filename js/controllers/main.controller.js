@@ -38,20 +38,33 @@
         Main.filter = filter;
         Main.visibleAside = visibleAside;
         Main.search = search;
+        Main.films = [];
+        Main.filmsMostrar = [];
+        Main.totalPelis = 0;
+        Main.totalpages = 0;
+        Main.page = 0;
+        Main.incremento = 0;
+        Main.cargarPelis = cargarPelis;
         activate();
 
         ////////////////
 
         function activate() {
+            Main.incremento = 18;
+            Main.page = 1;
             visibleAside();
             GenresFactory.getAll()
                 .then(function (response) {
                     Main.genres = response;
                 })
-            MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join("2%C"))
+            MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join("2%C"), Main.page)
                 .then(function (response) {
                     Main.films = response.films;
+                    for (var i = 0; i < 18; i++) {
+                        Main.filmsMostrar.push(Main.films[i]);
+                    }
                     Main.totalPelis = response.totalPelis;
+                    Main.totalpages = response.totalpages;
                 })
         }
         ///////////////////////////////////////////////////////////////////////
@@ -66,6 +79,8 @@
                 max = Main.slider.maxValue - 1900;
             }
             document.querySelector('.rz-pointer-max').innerHTML = max;
+            Main.incremento = 18;
+            Main.page = 1;
             filter();
         })
         $scope.$watch("Main.slider.minValue", function (value) {
@@ -79,21 +94,27 @@
                 min = Main.slider.minValue - 1900;
             }
             document.querySelector('.rz-pointer-min').innerHTML = min;
+            Main.incremento = 18;
+            Main.page = 1;
             filter();
         })
         ///////////////////////////////////////////////////////////////////////
         $scope.$watch("Main.slider1.maxValue", function (value) {
             var max = Main.slider1.maxValue;
             document.querySelector('#valorationSlider > .rz-pointer-max').innerHTML = max;
+            Main.incremento = 18;
+            Main.page = 1;
             filter();
         })
         $scope.$watch("Main.slider1.minValue", function (value) {
             var min = Main.slider1.minValue;
             document.querySelector('#valorationSlider  span.rz-pointer.rz-pointer-min').innerHTML = min;
+            Main.incremento = 18;
+            Main.page = 1;
             filter();
         })
         ///////////////////////////////////////////////////////////////////////
-        $scope.$watch("Main.nameFilm", function (value){
+        $scope.$watch("Main.nameFilm", function (value) {
             if (value != undefined) {
                 search(value);
             }
@@ -145,15 +166,49 @@
         }
         /////////////////////////////////////////////////////////////////
         function filter() {
-            MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join())
+            MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
                 .then(function (response) {
                     Main.films = response.films;
+                    for (var i = 0; i < 18; i++) {
+                        Main.filmsMostrar.push(Main.films[i]);
+                    }
                     Main.totalPelis = response.totalPelis;
+                    Main.totalpages = response.totalpages;
                 })
         }
         //////////////////////////////////////////////////////////////////
-        function visibleAside(){
+        function visibleAside() {
             document.querySelector('.ocultAside').style.visibility = "hidden";
+        }
+        //////////////////////////
+        $(window).scroll(function () {
+            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                if (Main.page < Main.totalpages) {
+                    cargarPelis();
+                }
+            }
+        });
+        ///////////////////////////
+        function cargarPelis() {
+            Main.page = Main.page + 1;
+            MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
+                .then(function (response) {
+                    if (response.films != []) {
+                        var array = response.films;
+                        array.forEach(function (element, position) {
+                            $scope.films.push(element);
+                        })
+                        var dif = $scope.films.length - $scope.filmsMostrar.length;
+                        if (dif <= 18) {
+                            $scope.filmsMostrar = $scope.films;
+                        } else {
+                            for (var i = $scope.incremento; i < $scope.incremento + 18; i++) {
+                                $scope.filmsMostrar.push($scope.films[i]);
+                            }
+                            $scope.incremento = $scope.incremento + 18;
+                        }
+                    }
+                });
         }
     }
 })();
