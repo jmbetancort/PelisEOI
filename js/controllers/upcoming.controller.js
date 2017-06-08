@@ -75,7 +75,6 @@
         //////////////////////////
         $(window).scroll(function () {
             if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-                alert("Hola");
                 cargarPelis();
             }
         });
@@ -96,6 +95,8 @@
                         $scope.incremento = $scope.incremento + 18;
                     }
                 });
+            } else {
+                $scope.filmsMostrar = $scope.films;
             }
         }
     }
