@@ -89,7 +89,7 @@
                     console.log(response);
                     if (response.films != []) {
                         console.log($scope.films);
-                        $scope.films.push(response.films);
+                        $scope.films.splice(($scope.films.length + 1) ,0,response.films);
                         var dif = $scope.films.length - $scope.filmsMostrar.length;
                         if (dif <= 18) {
                             $scope.filmsMostrar = $scope.films;
