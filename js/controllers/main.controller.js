@@ -39,8 +39,6 @@
         Main.visibleAside = visibleAside;
         Main.search = search;
         Main.films = [];
-        $scope.films = [];
-        $scope.filmsMostrar = [];
         Main.filmsMostrar = [];
         Main.totalPelis = 0;
         Main.page = 0;
@@ -50,8 +48,6 @@
         ////////////////
 
         function activate() {
-            $scope.films = [];
-            $scope.filmsMostrar = [];
             Main.filmsMostrar = [];
             Main.incremento = 18;
             Main.page = 1;
@@ -183,8 +179,6 @@
         }
         /////////////////////////////////////////////////////////////////
         function filter() {
-            $scope.films = [];
-            $scope.filmsMostrar = [];
             Main.filmsMostrar = [];
             Main.films = [];
             MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
