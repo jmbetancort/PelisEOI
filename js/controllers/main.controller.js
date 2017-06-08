@@ -223,6 +223,8 @@
                     if (response.films != []) {
                         var array = response.films;
                         array.forEach(function (element, position) {
+                            console.log(element.id)
+                            console.log($scope.films[position].id);
                             $scope.films.push(element);
                         })
                         console.log($scope.films);
