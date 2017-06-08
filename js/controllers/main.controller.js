@@ -223,11 +223,8 @@
                     if (response.films != []) {
                         var array = response.films;
                         array.forEach(function (element, position) {
-                            console.log(element.id)
-                            console.log($scope.films[position].id);
                             $scope.films.push(element);
                         })
-                        console.log($scope.films);
                         var dif = $scope.films.length - $scope.filmsMostrar.length;
                         if (dif <= 18) {
                             $scope.filmsMostrar = $scope.films;
@@ -237,7 +234,6 @@
                             }
                             Main.filmsMostrar = $scope.filmsMostrar;
                             Main.films = $scope.films;
-                            console.log(Main.filmsMostrar);
                             Main.incremento = Main.incremento + 18;
                         }
                     }
