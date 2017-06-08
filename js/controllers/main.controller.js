@@ -66,6 +66,7 @@
                     Main.totalPelis = response.totalPelis;
                     Main.totalpages = response.totalpages;
                     Main.filmsMostrar = filmsMostrar;
+                    Main.films = films;
                 })
         }
         ///////////////////////////////////////////////////////////////////////
@@ -188,6 +189,7 @@
                     Main.totalPelis = response.totalPelis;
                     Main.totalpages = response.totalpages;
                     Main.filmsMostrar = filmsMostrar;
+                    Main.films = films;
                 })
         }
         //////////////////////////////////////////////////////////////////
