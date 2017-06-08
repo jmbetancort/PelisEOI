@@ -223,10 +223,10 @@
                             Main.filmsMostrar = Main.films;
                         } else {
                             var filmsMostrar = []
-                            for (var i = Main.incremento; i < Main.incremento + 18; i++) {
+                            for (var i = 0; i < Main.incremento + 18; i++) {
                                 filmsMostrar.push(Main.films[i]);
                             }
-                            Main.filmsMostrar.push(filmsMostrar);
+                            Main.filmsMostrar = filmsMostrar;
                             console.log(Main.filmsMostrar);
                             Main.incremento = Main.incremento + 18;
                         }
