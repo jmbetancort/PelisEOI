@@ -159,6 +159,8 @@
             Main.slider.maxValue = 2017;
             Main.slider1.minValue = 0;
             Main.slider1.maxValue = 10;
+            Main.incremento = 18;
+            Main.page = 1;
             Main.genres.forEach(function (element, position) {
                 element.option = "";
             })
