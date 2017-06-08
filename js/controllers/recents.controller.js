@@ -23,7 +23,7 @@
         ////////////////
 
         function activate() {
-            $scope.incremento = 17;
+            $scope.incremento = 18;
             $scope.page = 1;
             document.querySelector('.ocultAside').style.visibility = "visible";
             MovieDBFactory.getFilms('now_playing', $scope.page)
@@ -92,21 +92,18 @@
         ///////////////////////////
         function cargarPelis() {
             $scope.page = $scope.page + 1;
-            console.log($scope.page);
             MovieDBFactory.getFilms('now_playing', $scope.page)
                 .then(function (response) {
-                    console.log(response);
                     if (response.films != []) {
                         var array = response.films;
                         array.forEach(function (element, position) {
                             $scope.films.push(element);
                         })
-                        console.log($scope.films);
                         var dif = $scope.films.length - $scope.filmsMostrar.length;
                         if (dif <= 18) {
                             $scope.filmsMostrar = $scope.films;
                         } else {
-                            for (var i = $scope.incremento + 1; i < $scope.incremento + 18; i++) {
+                            for (var i = $scope.incremento; i < $scope.incremento + 18; i++) {
                                 $scope.filmsMostrar.push($scope.films[i]);
                             }
                             $scope.incremento = $scope.incremento + 18;
