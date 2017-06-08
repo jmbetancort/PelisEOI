@@ -226,8 +226,9 @@
                             for (var i = Main.incremento; i < Main.incremento + 18; i++) {
                                 filmsMostrar.push(Main.films[i]);
                             }
-                            filmsMostrar = filmsMostrar.join();
-                            Main.filmsMostrar.splice(Main.incremento,0,filmsMostrar);
+                            filmsMostrar.forEach(function(element,position){
+                                Main.filmsMostrar.push(element);
+                            })
                             console.log(Main.filmsMostrar);
                             Main.incremento = Main.incremento + 18;
                         }
