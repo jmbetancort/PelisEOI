@@ -39,6 +39,8 @@
         Main.visibleAside = visibleAside;
         Main.search = search;
         Main.films = [];
+        $scope.films = [];
+        $scope.filmsMostrar = [];
         Main.filmsMostrar = [];
         Main.totalPelis = 0;
         Main.page = 0;
@@ -49,6 +51,8 @@
         ////////////////
 
         function activate() {
+            $scope.films = [];
+            $scope.filmsMostrar = [];
             Main.filmsMostrar = [];
             Main.incremento = 18;
             Main.page = 1;
@@ -180,6 +184,8 @@
         }
         /////////////////////////////////////////////////////////////////
         function filter() {
+            $scope.films = [];
+            $scope.filmsMostrar = [];
             Main.filmsMostrar = [];
             Main.films = [];
             MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
@@ -209,26 +215,26 @@
         });
         ///////////////////////////
         function cargarPelis() {
+            $scope.films = Main.films;
+            $scope.filmsMostrar = Main.filmsMostrar;
             Main.page = Main.page + 1;
             MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
                 .then(function (response) {
                     if (response.films != []) {
                         var array = response.films;
                         array.forEach(function (element, position) {
-                            if(element.id != Main.films[position].id){
-                                Main.films.push(element);
-                            }
+                            $scope.films.push(element);
                         })
-                        console.log(Main.films);
-                        var dif = Main.films.length - Main.filmsMostrar.length;
+                        console.log($scope.films);
+                        var dif = $scope.films.length - $scope.filmsMostrar.length;
                         if (dif <= 18) {
-                            Main.filmsMostrar = Main.films;
+                            $scope.filmsMostrar = $scope.films;
                         } else {
-                            var filmsMostrar = []
-                            for (var i = 0; i < Main.incremento + 18; i++) {
-                                filmsMostrar.push(Main.films[i]);
+                            for (var i = Main.incremento; i < Main.incremento + 18; i++) {
+                                $scope.filmsMostrar.push($scope.films[i]);
                             }
-                            Main.filmsMostrar = filmsMostrar;
+                            Main.filmsMostrar = $scope.filmsMostrar;
+                            Main.films = $scope.films;
                             console.log(Main.filmsMostrar);
                             Main.incremento = Main.incremento + 18;
                         }
