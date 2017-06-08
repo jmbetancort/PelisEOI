@@ -61,6 +61,7 @@
                     var films = response.films;
                     for (var i = 0; i < 18; i++) {
                         Main.filmsMostrar.push(films[i]);
+                        console.log(Main.filmsMostrar);
                     }
                     Main.totalPelis = response.totalPelis;
                     Main.totalpages = response.totalpages;
