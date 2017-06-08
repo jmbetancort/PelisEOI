@@ -222,9 +222,12 @@
                         if (dif <= 18) {
                             Main.filmsMostrar = Main.films;
                         } else {
+                            var filmsMostrar = []
                             for (var i = Main.incremento; i < Main.incremento + 18; i++) {
-                                Main.filmsMostrar[i] = Main.films[i];
+                                filmsMostrar.push(Main.films[i]);
                             }
+                            filmsMostrar = filmsMostrar.join();
+                            Main.filmsMostrar.splice(Main.incremento,0,filmsMostrar);
                             console.log(Main.filmsMostrar);
                             Main.incremento = Main.incremento + 18;
                         }
