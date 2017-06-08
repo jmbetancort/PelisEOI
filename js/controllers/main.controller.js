@@ -217,6 +217,7 @@
                         array.forEach(function (element, position) {
                             Main.films.push(element);
                         })
+                        console.log(Main.films);
                         var dif = Main.films.length - Main.filmsMostrar.length;
                         if (dif <= 18) {
                             Main.filmsMostrar = Main.films;
@@ -224,6 +225,7 @@
                             for (var i = Main.incremento; i < Main.incremento + 18; i++) {
                                 Main.filmsMostrar.push(Main.films[i]);
                             }
+                            console.log(Main.filmsMostrar);
                             Main.incremento = Main.incremento + 18;
                         }
                     }
