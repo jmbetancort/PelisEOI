@@ -109,6 +109,7 @@
                             $scope.incremento = $scope.incremento + 18;
                         }
                     }
+                    console.log($scope.filmsMostrar);
                 });
         }
     }
