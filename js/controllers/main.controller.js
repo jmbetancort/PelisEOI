@@ -57,9 +57,12 @@
             MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join("2%C"), Main.page)
                 .then(function (response) {
                     Main.films = response.films;
+                    for (var i = 0; i < 18; i++) {
+                        Main.filmsMostrar.push(Main.films[i]);
+                    }
                     Main.totalPelis = response.totalPelis;
+                    Main.totalpages = response.totalpages;
                 })
-
         }
         ///////////////////////////////////////////////////////////////////////
         $scope.$watch("Main.slider.maxValue", function (value) {
