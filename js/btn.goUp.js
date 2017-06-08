@@ -1,17 +1,22 @@
-$(document).ready(function(){
- 
-	$('.ir-arriba').click(function(){
+$(document).ready(function () {
+
+	$('.ir-arriba').click(function () {
 		$('body, html').animate({
 			scrollTop: '0px'
 		}, 300);
 	});
- 
-	$(window).scroll(function(){
-		if( $(this).scrollTop() > 0 ){
+
+	$(window).scroll(function () {
+		if ($(this).scrollTop() > 0) {
 			$('.ir-arriba').slideDown(300);
 		} else {
 			$('.ir-arriba').slideUp(300);
 		}
 	});
- 
+	$(window).scroll(function () {
+		if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+			alert("We're at the bottom of the page!!");
+		}
+	});
+
 });

@@ -20,10 +20,11 @@
         return service;
 
         ////////////////
-        function getFilms(mode) {
-            return $http.get('https://api.themoviedb.org/3/movie/' + mode + '?api_key=daf9a865f58518b9a01a5ebc5ba0b252&language=es&page=1&region=ES')
+        function getFilms(mode,page) {
+            return $http.get('https://api.themoviedb.org/3/movie/' + mode + '?api_key=daf9a865f58518b9a01a5ebc5ba0b252&language=es&page='+page+'&region=ES')
                 .then(function (response) {
                     var totalpelis = response.data.total_results;
+                    var totalpages = response.data.total_pages;
                     var array = response.data.results;
                     var baseURL = 'https://image.tmdb.org/t/p/w500';
                     var films = [];
