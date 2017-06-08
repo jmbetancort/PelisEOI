@@ -17,13 +17,11 @@
         $scope.LocalFactory = LocalFactory;
         $scope.addFavourite = addFavourite;
         $scope.addSeeLater = addSeeLater;
-        $scope.cargarPelis = cargarPelis;
         activate();
 
         ////////////////
 
         function activate() {
-            $scope.incremento = 18;
             $scope.page = 1;
             document.querySelector('.ocultAside').style.visibility = "visible";
             MovieDBFactory.getFilms('now_playing', $scope.page)
@@ -80,37 +78,6 @@
         //////////////////////////
         function addSeeLater(film) {
             LocalFactory.addSeeLater(film);
-        }
-        //////////////////////////
-        $(window).scroll(function () {
-            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-                if ($scope.page < $scope.totalpages) {
-                    cargarPelis();
-                }
-            }
-        });
-        ///////////////////////////
-        function cargarPelis() {
-            $scope.page = $scope.page + 1;
-            MovieDBFactory.getFilms('now_playing', $scope.page)
-                .then(function (response) {
-                    if (response.films != []) {
-                        var array = response.films;
-                        array.forEach(function (element, position) {
-                            $scope.films.push(element);
-                        })
-                        var dif = $scope.films.length - $scope.filmsMostrar.length;
-                        if (dif <= 18) {
-                            $scope.filmsMostrar = $scope.films;
-                        } else {
-                            for (var i = $scope.incremento; i < $scope.incremento + 18; i++) {
-                                $scope.filmsMostrar.push($scope.films[i]);
-                            }
-                            $scope.incremento = $scope.incremento + 18;
-                        }
-                    }
-                    console.log($scope.filmsMostrar);
-                });
         }
     }
 })();
