@@ -100,7 +100,7 @@
                             $scope.films.push(element);
                         })
                         var dif = $scope.films.length - $scope.filmsMostrar.length;
-                        if (dif <= 18) {
+                        if (dif < 18) {
                             $scope.filmsMostrar = $scope.films;
                         } else {
                             for (var i = $scope.incremento; i < $scope.incremento + 18; i++) {
