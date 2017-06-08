@@ -48,6 +48,8 @@
         ////////////////
 
         function activate() {
+            Main.films = [];
+            Main.filmsMostrar = [];
             Main.incremento = 18;
             Main.page = 1;
             visibleAside();
@@ -171,6 +173,7 @@
         /////////////////////////////////////////////////////////////////
         function filter() {
             Main.filmsMostrar = [];
+            Main.films = [];
             MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
                 .then(function (response) {
                     Main.films = response.films;
