@@ -39,6 +39,7 @@
         Main.visibleAside = visibleAside;
         Main.search = search;
         Main.films = [];
+        Main.filmsMostrar = [];
         Main.totalPelis = 0;
         Main.page = 0;
         Main.incremento = 0;
