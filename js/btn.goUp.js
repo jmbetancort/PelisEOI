@@ -13,10 +13,5 @@ $(document).ready(function () {
 			$('.ir-arriba').slideUp(300);
 		}
 	});
-	$(window).scroll(function () {
-		if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-			alert("We're at the bottom of the page!!");
-		}
-	});
 
 });

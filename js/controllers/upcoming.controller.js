@@ -9,19 +9,30 @@
 
     function UpcomingController($scope, MovieDBFactory, LocalFactory) {
         $scope.films = [];
+        $scope.filmsMostrar = [];
         $scope.totalPelis = 0;
+        $scope.totalpages = 0;
+        $scope.page = 0;
+        $scope.incremento = 0;
         $scope.LocalFactory = LocalFactory;
         $scope.addFavourite = addFavourite;
         $scope.addSeeLater = addSeeLater;
+        $scope.cargarPelis = cargarPelis;
         activate();
         ////////////////
 
         function activate() {
+            $scope.incremento = 17;
+            $scope.page = 1;
             document.querySelector('.ocultAside').style.visibility = "visible";
-            MovieDBFactory.getFilms('upcoming')
+            MovieDBFactory.getFilms('upcoming',$scope.page)
                 .then(function (response) {
                     $scope.films = response.films;
+                    for(var i=0;i<18;i++){
+                        $scope.filmsMostrar.push($scope.films[i]);
+                    }
                     $scope.totalPelis = response.totalPelis;
+                    $scope.totalpages = response.totalpages;
                 });
         }
         ///////////////////////////////////////////////////////////////////////
@@ -60,6 +71,31 @@
         //////////////////////////
         function addSeeLater(film) {
             LocalFactory.addSeeLater(film);
+        }
+        //////////////////////////
+        $(window).scroll(function () {
+            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                cargarPelis();
+            }
+        });
+        ///////////////////////////
+        function cargarPelis(){
+            if ($scope.page < $scope.totalpages){
+                $scope.page = $scope.page + 1;
+                MovieDBFactory.getFilms('upcoming',$scope.page)
+                .then(function (response) {
+                    $scope.films.push(response.films);
+                    var dif = $scope.films.length - $scope.filmsMostrar.length;
+                    if(dif <= 18){
+                        $scope.filmsMostrar = $scope.films;
+                    } else {
+                        for(var i= $scope.incremento; i < $scope.incremento + 18; i++){
+                            $scope.filmsMostrar.push($scope.films[i]);
+                        }
+                        $scope.incremento = $scope.incremento + 18;
+                    }
+                });
+            }
         }
     }
 })();
