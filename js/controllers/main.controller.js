@@ -59,15 +59,13 @@
             MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join("2%C"), Main.page)
                 .then(function (response) {
                     var films = response.films;
+                    var filmsMostrar = []
                     for (var i = 0; i < 18; i++) {
-                        Main.filmsMostrar.push(films[i]);
-                        console.log(Main.filmsMostrar);
+                        filmsMostrar.push(films[i]);
                     }
                     Main.totalPelis = response.totalPelis;
                     Main.totalpages = response.totalpages;
-                    console.log(Main.filmsMostrar);
-                    console.log(films);
-                    console.log(Main.films);
+                    Main.filmsMostrar = filmsMostrar;
                 })
         }
         ///////////////////////////////////////////////////////////////////////
@@ -182,12 +180,14 @@
             Main.films = [];
             MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
                 .then(function (response) {
-                    Main.films = response.films;
+                    var films = response.films;
+                    var filmsMostrar = [];
                     for (var i = 0; i < 18; i++) {
-                        Main.filmsMostrar.push(Main.films[i]);
+                        filmsMostrar.push(films[i])
                     }
                     Main.totalPelis = response.totalPelis;
                     Main.totalpages = response.totalpages;
+                    Main.filmsMostrar = filmsMostrar;
                 })
         }
         //////////////////////////////////////////////////////////////////
