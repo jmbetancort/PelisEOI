@@ -93,7 +93,7 @@
         function cargarPelis() {
             $scope.page = $scope.page + 1;
             console.log($scope.page);
-            MovieDBFactory.getFilms('upcoming', $scope.page)
+            MovieDBFactory.getFilms('now_playing', $scope.page)
                 .then(function (response) {
                     console.log(response);
                     if (response.films != []) {
