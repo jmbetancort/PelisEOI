@@ -3,7 +3,7 @@
     <p>Ordenar <a href="#"><i class="fa fa-angle-down" aria-hidden="true"></a></i></p>
 </div>
 <div class="containermovie">
-    <div class="item" ng-repeat="film in Main.filmsMostrar track by film.id">
+    <div class="item" ng-repeat="film in Main.films track by film.id">
         <a  ng-model="oneFilm" href="individual/{{film.id}}"><img ng-src="{{film.poster}}" title="{{film.name}}"></a>
         <div class="icons-rt">
             <div class="val" id="star"><i class="fa fa-star-o fa-lg" aria-hidden="true"></i><span>{{film.vote}}</span></div>

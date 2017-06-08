@@ -39,12 +39,9 @@
         Main.visibleAside = visibleAside;
         Main.search = search;
         Main.films = [];
-        Main.filmsMostrar = [];
         Main.totalPelis = 0;
-        Main.totalpages = 0;
         Main.page = 0;
         Main.incremento = 0;
-        Main.cargarPelis = cargarPelis;
         activate();
 
         ////////////////
@@ -60,13 +57,10 @@
             MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join("2%C"), Main.page)
                 .then(function (response) {
                     Main.films = response.films;
-                    for (var i = 0; i < 18; i++) {
-                        Main.filmsMostrar.push(Main.films[i]);
-                    }
                     Main.totalPelis = response.totalPelis;
-                    Main.totalpages = response.totalpages;
                 })
                 console.log(Main.filmsMostrar);
+
         }
         ///////////////////////////////////////////////////////////////////////
         $scope.$watch("Main.slider.maxValue", function (value) {
@@ -80,7 +74,6 @@
                 max = Main.slider.maxValue - 1900;
             }
             document.querySelector('.rz-pointer-max').innerHTML = max;
-            Main.incremento = 18;
             Main.page = 1;
             filter();
         })
@@ -95,7 +88,6 @@
                 min = Main.slider.minValue - 1900;
             }
             document.querySelector('.rz-pointer-min').innerHTML = min;
-            Main.incremento = 18;
             Main.page = 1;
             filter();
         })
@@ -103,14 +95,12 @@
         $scope.$watch("Main.slider1.maxValue", function (value) {
             var max = Main.slider1.maxValue;
             document.querySelector('#valorationSlider > .rz-pointer-max').innerHTML = max;
-            Main.incremento = 18;
             Main.page = 1;
             filter();
         })
         $scope.$watch("Main.slider1.minValue", function (value) {
             var min = Main.slider1.minValue;
             document.querySelector('#valorationSlider  span.rz-pointer.rz-pointer-min').innerHTML = min;
-            Main.incremento = 18;
             Main.page = 1;
             filter();
         })
@@ -160,7 +150,6 @@
             Main.slider.maxValue = 2017;
             Main.slider1.minValue = 0;
             Main.slider1.maxValue = 10;
-            Main.incremento = 18;
             Main.page = 1;
             Main.genres.forEach(function (element, position) {
                 element.option = "";
@@ -172,46 +161,12 @@
             MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
                 .then(function (response) {
                     Main.films = response.films;
-                    for (var i = 0; i < 18; i++) {
-                        Main.filmsMostrar.push(Main.films[i]);
-                    }
                     Main.totalPelis = response.totalPelis;
-                    Main.totalpages = response.totalpages;
                 })
         }
         //////////////////////////////////////////////////////////////////
         function visibleAside() {
             document.querySelector('.ocultAside').style.visibility = "hidden";
-        }
-        //////////////////////////
-        $(window).scroll(function () {
-            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-                if (Main.page < Main.totalpages) {
-                    cargarPelis();
-                }
-            }
-        });
-        ///////////////////////////
-        function cargarPelis() {
-            Main.page = Main.page + 1;
-            MovieDBFactory.filterFilms(Main.slider.minValue, Main.slider.maxValue, Main.slider1.minValue, Main.slider1.maxValue, Main.btnSelects.join(), Main.page)
-                .then(function (response) {
-                    if (response.films != []) {
-                        var array = response.films;
-                        array.forEach(function (element, position) {
-                            Main.films.push(element);
-                        })
-                        var dif = Main.films.length - Main.filmsMostrar.length;
-                        if (dif <= 18) {
-                            Main.filmsMostrar = Main.films;
-                        } else {
-                            for (var i = Main.incremento; i < Main.incremento + 18; i++) {
-                                Main.filmsMostrar.push(Main.films[i]);
-                            }
-                            Main.incremento = Main.incremento + 18;
-                        }
-                    }
-                });
         }
     }
 })();
