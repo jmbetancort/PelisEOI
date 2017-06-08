@@ -88,11 +88,11 @@
                 .then(function (response) {
                     console.log(response);
                     if (response.films != []) {
-                        console.log($scope.films);
                         var array = response.films;
                         array.forEach(function(element,position){
                             $scope.films.push(element);
                         })
+                        console.log($scope.films);
                         var dif = $scope.films.length - $scope.filmsMostrar.length;
                         if (dif <= 18) {
                             $scope.filmsMostrar = $scope.films;
