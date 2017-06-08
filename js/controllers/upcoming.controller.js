@@ -84,6 +84,7 @@
                 $scope.page = $scope.page + 1;
                 MovieDBFactory.getFilms('upcoming', $scope.page)
                     .then(function (response) {
+                        console.log(response);
                         if (response.films != []) {
                             $scope.films.push(response.films);
                             var dif = $scope.films.length - $scope.filmsMostrar.length;
