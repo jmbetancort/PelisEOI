@@ -45,7 +45,6 @@
         Main.totalPelis = 0;
         Main.page = 0;
         Main.incremento = 0;
-        Main.cargarPelis = cargarPelis;
         activate();
 
         ////////////////
