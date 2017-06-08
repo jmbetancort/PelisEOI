@@ -29,7 +29,7 @@
             MovieDBFactory.getFilms('now_playing', $scope.page)
                 .then(function (response) {
                     $scope.films = response.films;
-                    for (var i = 0; i < 18; i++) {
+                    for (var i = 0; i <= 17; i++) {
                         $scope.filmsMostrar.push($scope.films[i]);
                     }
                     $scope.totalPelis = response.totalPelis;
@@ -100,7 +100,7 @@
                             $scope.films.push(element);
                         })
                         var dif = $scope.films.length - $scope.filmsMostrar.length;
-                        if (dif < 18) {
+                        if (dif <= 18) {
                             $scope.filmsMostrar = $scope.films;
                         } else {
                             for (var i = $scope.incremento; i < $scope.incremento + 18; i++) {
