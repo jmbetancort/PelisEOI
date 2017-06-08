@@ -66,6 +66,7 @@
                     Main.totalPelis = response.totalPelis;
                     Main.totalpages = response.totalpages;
                 })
+                console.log(Main.filmsMostrar);
         }
         ///////////////////////////////////////////////////////////////////////
         $scope.$watch("Main.slider.maxValue", function (value) {
