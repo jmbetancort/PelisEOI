@@ -25,10 +25,10 @@
             $scope.incremento = 17;
             $scope.page = 1;
             document.querySelector('.ocultAside').style.visibility = "visible";
-            MovieDBFactory.getFilms('upcoming',$scope.page)
+            MovieDBFactory.getFilms('upcoming', $scope.page)
                 .then(function (response) {
                     $scope.films = response.films;
-                    for(var i=0;i<18;i++){
+                    for (var i = 0; i < 18; i++) {
                         $scope.filmsMostrar.push($scope.films[i]);
                     }
                     $scope.totalPelis = response.totalPelis;
@@ -79,22 +79,24 @@
             }
         });
         ///////////////////////////
-        function cargarPelis(){
-            if ($scope.page < $scope.totalpages){
+        function cargarPelis() {
+            if ($scope.page < $scope.totalpages) {
                 $scope.page = $scope.page + 1;
-                MovieDBFactory.getFilms('upcoming',$scope.page)
-                .then(function (response) {
-                    $scope.films.push(response.films);
-                    var dif = $scope.films.length - $scope.filmsMostrar.length;
-                    if(dif <= 18){
-                        $scope.filmsMostrar = $scope.films;
-                    } else {
-                        for(var i= $scope.incremento; i < $scope.incremento + 18; i++){
-                            $scope.filmsMostrar.push($scope.films[i]);
+                MovieDBFactory.getFilms('upcoming', $scope.page)
+                    .then(function (response) {
+                        if (response.films != []) {
+                            $scope.films.push(response.films);
+                            var dif = $scope.films.length - $scope.filmsMostrar.length;
+                            if (dif <= 18) {
+                                $scope.filmsMostrar = $scope.films;
+                            } else {
+                                for (var i = $scope.incremento; i < $scope.incremento + 18; i++) {
+                                    $scope.filmsMostrar.push($scope.films[i]);
+                                }
+                                $scope.incremento = $scope.incremento + 18;
+                            }
                         }
-                        $scope.incremento = $scope.incremento + 18;
-                    }
-                });
+                    });
             } else {
                 $scope.filmsMostrar = $scope.films;
             }
