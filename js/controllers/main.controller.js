@@ -223,7 +223,7 @@
                             Main.filmsMostrar = Main.films;
                         } else {
                             for (var i = Main.incremento; i < Main.incremento + 18; i++) {
-                                Main.filmsMostrar.push(Main.films[i]);
+                                Main.filmsMostrar.splice(i,0,films[i]);
                             }
                             console.log(Main.filmsMostrar);
                             Main.incremento = Main.incremento + 18;
