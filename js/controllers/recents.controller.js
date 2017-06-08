@@ -9,20 +9,31 @@
 
     function RecentController($scope, MovieDBFactory, LocalFactory) {
         $scope.films = [];
+        $scope.filmsMostrar = [];
         $scope.totalPelis = 0;
+        $scope.totalpages = 0;
+        $scope.page = 0;
+        $scope.incremento = 0;
         $scope.LocalFactory = LocalFactory;
         $scope.addFavourite = addFavourite;
         $scope.addSeeLater = addSeeLater;
+        $scope.cargarPelis = cargarPelis;
         activate();
 
         ////////////////
 
         function activate() {
+            $scope.incremento = 17;
+            $scope.page = 1;
             document.querySelector('.ocultAside').style.visibility = "visible";
-            MovieDBFactory.getFilms('now_playing')
+            MovieDBFactory.getFilms('now_playing', $scope.page)
                 .then(function (response) {
                     $scope.films = response.films;
+                    for (var i = 0; i < 18; i++) {
+                        $scope.filmsMostrar.push($scope.films[i]);
+                    }
                     $scope.totalPelis = response.totalPelis;
+                    $scope.totalpages = response.totalpages;
                 });
         }
         ///////////////////////////////////////////////////////////////////////
@@ -61,6 +72,47 @@
         //////////////////////////
         function addSeeLater(film) {
             LocalFactory.addSeeLater(film);
+        }
+        //////////////////////////
+        function addFavourite(film) {
+            LocalFactory.addFavourites(film);
+        }
+        //////////////////////////
+        function addSeeLater(film) {
+            LocalFactory.addSeeLater(film);
+        }
+        //////////////////////////
+        $(window).scroll(function () {
+            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                if ($scope.page < $scope.totalpages) {
+                    cargarPelis();
+                }
+            }
+        });
+        ///////////////////////////
+        function cargarPelis() {
+            $scope.page = $scope.page + 1;
+            console.log($scope.page);
+            MovieDBFactory.getFilms('upcoming', $scope.page)
+                .then(function (response) {
+                    console.log(response);
+                    if (response.films != []) {
+                        var array = response.films;
+                        array.forEach(function (element, position) {
+                            $scope.films.push(element);
+                        })
+                        console.log($scope.films);
+                        var dif = $scope.films.length - $scope.filmsMostrar.length;
+                        if (dif <= 18) {
+                            $scope.filmsMostrar = $scope.films;
+                        } else {
+                            for (var i = $scope.incremento + 1; i < $scope.incremento + 18; i++) {
+                                $scope.filmsMostrar.push($scope.films[i]);
+                            }
+                            $scope.incremento = $scope.incremento + 18;
+                        }
+                    }
+                });
         }
     }
 })();
